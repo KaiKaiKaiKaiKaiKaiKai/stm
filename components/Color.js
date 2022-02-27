@@ -5,7 +5,7 @@ export function tierColor(tier) {
         case 3 :
             return 'blue-400';
         case 4 :
-            return 'green-400';
+            return 'red-400';
         case 5 :
             return 'orange-400';
         default:
@@ -43,6 +43,6 @@ export const Colors = {
     1: 'zinc-400',
     2: 'yellow-400',
     3: 'blue-400',
-    4: 'green-400',
+    4: 'red-400',
     5: 'orange-400'
 };

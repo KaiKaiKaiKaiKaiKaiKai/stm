@@ -9,6 +9,7 @@ import HeaderItem from "./HeaderItem"
 import Link from 'next/link'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
+import { logout } from "../lib/hooks"
 
 function Header() {
     const {user, username, souls} = useContext(UserContext)
@@ -22,14 +23,16 @@ function Header() {
             <div className="text-right">
                 <HeaderItem title='Market' green='true' Icon={ShoppingCartIcon} href='/'/>
                 <HeaderItem title='Support' Icon={ChatAlt2Icon} special='false' href='/support'/>
-                <separator className="border-l border-zinc-400 ml-6"></separator>
+                <separator className="border-l border-zinc-400 h-full ml-6"></separator>
                 {user
-                ?   <span className="ml-6 text-zinc-400 text-sm">
+                ?   <a>
+                        <div className={`ml-6 inline-flex text-sm items-center text-zinc-400 align-middle`}>
                         <span>{username}</span>
-                        <span className="ml-3 text-purple-400">{souls} Souls</span>
+                        <span className="ml-2 text-purple-400">{souls}</span>
+                        </div>
                         <separator className="border-l border-zinc-400 ml-6"></separator>
-                        <button><HeaderItem title='Sign out' Icon={LogoutIcon} special='false' href=""/></button>
-                    </span>
+                        <button onClick={logout}><HeaderItem title='Sign out' Icon={LogoutIcon} special='false' href=""/></button>
+                    </a>
                 : <HeaderItem title='Sign in' Icon={LoginIcon} special='false' href='/signin'/>
                 }
             </div>
