@@ -17,7 +17,7 @@ export function transColor(trans) {
     switch(trans) {
         case 'wtb':
             return 'green-400';
-        default:
+        case 'wts':
             return 'purple-400';
     }
 }
@@ -36,3 +36,8 @@ export function tierName(tier) {
             return 'common';
     }
 }
+
+export const Colors = {
+    wtb: 'bg-green-400',
+    wts: 'bg-purple-400'
+};
