@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { db } from '../firebase'
+import { db } from '../lib/firebase'
 import { collection, addDoc, Timestamp } from "firebase/firestore"
 import { transColor } from '../components/Color'
 

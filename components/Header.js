@@ -8,11 +8,14 @@ import {
 import HeaderItem from "./HeaderItem"
 import Link from 'next/link'
 import { getAuthUser, logOut } from '../components/AuthMan'
-import GetUserName from '../components/GetUserName'
-import GetUserSouls from '../components/GetUserSouls'
+import GetUserName from '../lib/GetUserName'
+import GetUserSouls from '../lib/GetUserSouls'
+import { useContext } from "react"
+import { UserContext } from "../lib/context"
 
 function Header() {
-    const user = getAuthUser()
+    const user1 = getAuthUser()
+    const {user, username} = useContext(UserContext)
 
   return (
     <nav className="bg-zinc-800 h-14 w-full">
@@ -24,9 +27,9 @@ function Header() {
                 <HeaderItem title='Market' green='true' Icon={ShoppingCartIcon} href='/'/>
                 <HeaderItem title='Support' Icon={ChatAlt2Icon} special='false' href='/support'/>
                 <separator className="border-l border-zinc-400 ml-6"></separator>
-                {user?.email
+                {user1?.email
                 ?   <span className="ml-6 text-zinc-400 text-sm">
-                        <span><GetUserName email={user.email} /></span>
+                        <span>{username}</span>
                         <span className="ml-3 text-purple-400"><GetUserSouls email={user.email} /> Souls</span>
                         <separator className="border-l border-zinc-400 ml-6"></separator>
                         <button onClick={logOut}><HeaderItem title='Sign out' Icon={LogoutIcon} special='false' href=""/></button>

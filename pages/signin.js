@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { auth } from '../firebase'
+import { auth } from '../lib/firebase'
 import { onAuthStateChanged, 
   signInWithEmailAndPassword, 
   signOut} from 'firebase/auth'
 
-function signin() {
+const SignIn = () => {
   
   const [loginEmail, setLoginEmail] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
@@ -46,4 +46,4 @@ function signin() {
   )
 }
 
-export default signin
+export default SignIn

@@ -1,5 +1,5 @@
 import Listing from './Listing'
-import { db } from '../firebase'
+import { db } from '../lib/firebase'
 import { collection, query, orderBy, onSnapshot} from "firebase/firestore"; 
 import { useState, useEffect } from 'react';
 

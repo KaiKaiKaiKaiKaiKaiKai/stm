@@ -1,10 +1,13 @@
 import Head from 'next/head'
-import Header from '../components/Header'
+import Header from '../Header'
 
 
 const Layout = ({children}) => {
   return (
     <div>
+      <Head>
+        <title>Soul Traders Marketplace</title>
+      </Head>
       {/* Header */}
       <Header />
         <main>

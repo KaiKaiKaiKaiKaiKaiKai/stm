@@ -1,10 +1,8 @@
 import List from '../components/List'
 import ListForm from '../components/ListForm'
-import { getAuthUser } from '../components/GetData'
 
 
 function RecentsArea() {
-const user = getAuthUser()
 
     return (
         <div className="w-full h-auto">
@@ -25,8 +23,8 @@ const user = getAuthUser()
                             <List trans='wtb' />
                         </div>
                     </div>
-                    {user?.email
-                        ?   <div className="flex justify-between">
+                    
+                           <div className="flex justify-between">
                                 <div className="w-3/6 px-2">
                                     <ListForm trans='wts' />
                                 </div>
@@ -34,8 +32,8 @@ const user = getAuthUser()
                                     <ListForm trans='wtb' />
                                 </div>
                                 </div>
-                        :   <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
-                    }
+                           <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
+                    
                 </div>
             </div>
         </div>
