@@ -1,6 +1,5 @@
 import Listing from './Listing'
 import { useList } from '../lib/hooks'
-import { useWtb } from '../lib/hooks'
 import { Colors } from '../components/Color'
 
 function List({trans}) {
