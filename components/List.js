@@ -7,17 +7,17 @@ function List({ trans }) {
     
     const [listings, setListings]=useState([])
     
-    const fetchListings = async () => {
-
-        const q = query(collection(db, trans), orderBy("timestamp", "desc"));
-        onSnapshot(q, (snapshot) =>
-        setListings(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
-        
-        )
-    }
     
-    useEffect(() => {
-        fetchListings();
+    
+    useEffect((trans) => {
+        const fetchListings = async () => {
+
+            const q = query(collection(db, trans), orderBy("timestamp", "desc"));
+            onSnapshot(q, (snapshot) =>
+            setListings(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
+            
+            )
+        }
       }, [])
   
     return (

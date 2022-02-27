@@ -13,7 +13,7 @@ function Listing({title, Icon, href, quantity, price, tier, trans }) {
                 <div className="mr-4 text-center">
                     <Link href={href}>
                         <a>
-                            <Image src="/images/items/spear.png" height="40" width="40" className="rounded-full" />
+                            <Image src="/images/items/spear.png" height="40" width="40" alt="icon" className="rounded-full" />
                         </a>
                     </Link>
                 </div>
