@@ -1,14 +1,11 @@
 import Listing from './Listing'
-import { useWts } from '../lib/hooks'
+import { useList } from '../lib/hooks'
 import { useWtb } from '../lib/hooks'
 import { Colors } from '../components/Color'
 
 function List({trans}) {
 
-    let listingsObj
-    trans == "wts" ?
-        listingsObj = useWts()
-    :   listingsObj = useWtb()
+   const listingsObj = useList({trans})
   
     return (
         <div>
