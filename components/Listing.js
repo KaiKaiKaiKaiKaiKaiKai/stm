@@ -7,9 +7,8 @@ import {
 } from "@heroicons/react/solid"
 
 function Listing({title, Icon, href, quantity, price, tier, trans, borderColor }) {
-    const classList = `border-l-4 border-${borderColor} bg-zinc-800 w-full px-4 shadow-lg mb-4`
     return (
-        <div className={classList}>
+        <div className={`border-l-4 border-${borderColor} bg-zinc-800 w-full px-4 shadow-lg mb-4`}>
             <div>
             <div className="h-full w-full flex items-center justify-between border-b border-zinc-400 py-2">
                 <div className="mr-4 text-center">
