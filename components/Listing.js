@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import {Colors} from '../components/Color'
 import { tierColor, transColor, tierName } from './Color'
 import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
-function Listing({title, Icon, href, quantity, price, tier, trans }) {
+function Listing({title, Icon, href, quantity, price, tier, trans, borderColor }) {
+    const classList = `border-l-4 border-${borderColor} bg-zinc-800 w-full px-4 shadow-lg mb-4`
     return (
-        <div className={`border-l-4 border-${tierColor(tier)} bg-zinc-800 w-full px-4 shadow-lg mb-4`}>
+        <div className={classList}>
             <div>
             <div className="h-full w-full flex items-center justify-between border-b border-zinc-400 py-2">
                 <div className="mr-4 text-center">

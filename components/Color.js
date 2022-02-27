@@ -38,6 +38,11 @@ export function tierName(tier) {
 }
 
 export const Colors = {
-    wtb: 'bg-green-400',
-    wts: 'bg-purple-400'
+    wtb: 'green-400',
+    wts: 'purple-400',
+    1: 'zinc-400',
+    2: 'yellow-400',
+    3: 'blue-400',
+    4: 'green-400',
+    5: 'orange-400'
 };

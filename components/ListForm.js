@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { db } from '../lib/firebase'
 import { collection, addDoc, Timestamp } from "firebase/firestore"
-import {Colors} from './Color'
 
-function ListForm({ trans }) {
+function ListForm({ trans, bgColor }) {
     
     const [formData, setFormData]=useState({
         title: "",
@@ -40,7 +39,7 @@ function ListForm({ trans }) {
       <br />
       <input onChange={(e) => setFormData({...formData, tier: e.target.value})} value={formData.tier} type="number" placeholder="Tier..." className="mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
       <br />
-      <div onClick={ submitForm } className={`rounded-sm text-center font-semibold cursor-pointer ${Colors.wtb} text-zinc-800 text-base p-2`}>List</div>
+      <div onClick={ submitForm } className={`rounded-sm text-center font-semibold cursor-pointer bg-${bgColor} text-zinc-800 text-base p-2`}>List</div>
     </form>
   )
 }

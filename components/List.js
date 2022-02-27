@@ -1,36 +1,29 @@
 import Listing from './Listing'
-import { db } from '../lib/firebase'
-import { collection, query, orderBy, onSnapshot} from "firebase/firestore"; 
-import { useState, useEffect } from 'react';
+import { useWts } from '../lib/hooks'
+import { useWtb } from '../lib/hooks'
+import { Colors } from '../components/Color'
 
-function List({ trans }) {
-    
-    const [listings, setListings]=useState([])
-    
-    
-    
-    useEffect((trans) => {
-        const fetchListings = async () => {
+function List({trans}) {
 
-            const q = query(collection(db, trans), orderBy("timestamp", "desc"));
-            onSnapshot(q, (snapshot) =>
-            setListings(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
-            
-            )
-        }
-      }, [])
+    let listingsObj
+    trans == "wts" ?
+        listingsObj = useWts()
+    :   listingsObj = useWtb()
   
     return (
-    <div>
-        {
-            listings.map((listing) => {
-                return (
-                    <Listing key={listing.id} title={listing.title} quantity={listing.quantity} price={listing.price} href="/" tier={listing.tier} trans={trans}/>
-                )
-            })
-        }
-    </div>
-  )
+        <div>
+            {
+               listingsObj.listings ?
+                    listingsObj.listings.map((listing) => {
+                        return (
+                            <Listing key={listing.id} title={listing.title} quantity={listing.quantity} price={listing.price} href="/" tier={listing.tier} trans={trans} borderColor={Colors[listing.tier]}/>
+                        )
+                    })
+
+                : null
+            }
+        </div>
+    )
 }
 
 export default List

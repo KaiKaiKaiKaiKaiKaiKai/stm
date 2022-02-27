@@ -2,6 +2,7 @@ import List from '../components/List'
 import ListForm from '../components/ListForm'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
+import { Colors } from "../components/Color"
 
 
 function RecentsArea() {
@@ -30,10 +31,10 @@ function RecentsArea() {
                         {user
                            ? <div className="flex justify-between">
                                 <div className="w-3/6 px-2">
-                                    <ListForm trans='wts' />
+                                    <ListForm trans='wts' bgColor={Colors.wts} />
                                 </div>
                                 <div className="w-3/6 px-2">
-                                    <ListForm trans='wtb' />
+                                    <ListForm trans='wtb' bgColor={Colors.wtb} />
                                 </div>
                                 </div>
                            : <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
