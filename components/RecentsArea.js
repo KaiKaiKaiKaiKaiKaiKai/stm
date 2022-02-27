@@ -1,8 +1,12 @@
 import List from '../components/List'
 import ListForm from '../components/ListForm'
+import { useContext } from "react"
+import { UserContext } from "../lib/context"
 
 
 function RecentsArea() {
+
+    const {user, username, souls} = useContext(UserContext)
 
     return (
         <div className="w-full h-auto">
@@ -23,8 +27,8 @@ function RecentsArea() {
                             <List trans='wtb' />
                         </div>
                     </div>
-                    
-                           <div className="flex justify-between">
+                        {user
+                           ? <div className="flex justify-between">
                                 <div className="w-3/6 px-2">
                                     <ListForm trans='wts' />
                                 </div>
@@ -32,8 +36,8 @@ function RecentsArea() {
                                     <ListForm trans='wtb' />
                                 </div>
                                 </div>
-                           <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
-                    
+                           : <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
+                        }
                 </div>
             </div>
         </div>

@@ -1,9 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { tierColor, transColor, tierName } from './Color'
 import {
     ShoppingCartIcon,
-    ChatAlt2Icon,
-    LoginIcon,
 } from "@heroicons/react/solid"
 
 function Listing({title, Icon, href, quantity, price, tier, trans }) {
@@ -14,7 +13,7 @@ function Listing({title, Icon, href, quantity, price, tier, trans }) {
                 <div className="mr-4 text-center">
                     <Link href={href}>
                         <a>
-                            <img src="/images/items/spear.png" height="40" width="40" className="rounded-full" />
+                            <Image src="/images/items/spear.png" height="40" width="40" className="rounded-full" />
                         </a>
                     </Link>
                 </div>
