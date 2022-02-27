@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Layout from '../components/layouts/Layout'
+import Layout from '../components/Layouts/Layout'
 import {UserContext} from '../lib/context';
 import {useUserData} from '../lib/hooks';
 import {useSouls} from '../lib/hooks';
