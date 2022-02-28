@@ -30,16 +30,16 @@ function ListForm({ trans, bgColor }) {
 
 
   return (
-    <form className="p-4 bg-zinc-800">
-      <input onChange={(e) => setFormData({...formData, title: e.target.value})} value={formData.title} placeholder="Title..." className="mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
+    <form className="p-8 rounded-md bg-zinc-800">
+      <input onChange={(e) => setFormData({...formData, title: e.target.value})} value={formData.title} placeholder="Title" className="rounded-md mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
       <br />
-      <input onChange={(e) => setFormData({...formData, quantity: e.target.value})} value={formData.quantity} type="number" placeholder="Quantity..." className="mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
+      <input onChange={(e) => setFormData({...formData, quantity: e.target.value})} value={formData.quantity} type="number" placeholder="Quantity" className="rounded-md mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
       <br />
-      <input onChange={(e) => setFormData({...formData, price: e.target.value})} value={formData.price} type="number" placeholder="Price..." className="mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
+      <input onChange={(e) => setFormData({...formData, price: e.target.value})} value={formData.price} type="number" placeholder="Price" className="rounded-md mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
       <br />
-      <input onChange={(e) => setFormData({...formData, tier: e.target.value})} value={formData.tier} type="number" placeholder="Tier..." className="mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
+      <input onChange={(e) => setFormData({...formData, tier: e.target.value})} value={formData.tier} type="number" placeholder="Tier" className="rounded-md mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
       <br />
-      <div onClick={ submitForm } className={`rounded-sm text-center font-semibold cursor-pointer bg-${bgColor} text-zinc-800 text-base p-2`}>List</div>
+      <div onClick={ submitForm } className={`rounded-md text-center font-semibold cursor-pointer bg-${bgColor} text-zinc-800 text-base p-2`}>List</div>
     </form>
   )
 }
