@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { auth } from '../lib/firebase'
-import { logout, login } from '../lib/hooks'
+import { login } from '../lib/hooks'
 import { onAuthStateChanged } from 'firebase/auth'
+import Link from 'next/link'
 
 const SignIn = () => {
   
@@ -28,7 +29,7 @@ const SignIn = () => {
       <br />
       <input placeholder="Password" type="password" onChange={(e) => { setLoginPassword(e.target.value) }} value={loginPassword} className="rounded-md mb-4 bg-zinc-900 p-2 text-white w-full outline-0"/>
       <br />
-      <div onClick={ sendLogin } className={`rounded-md text-center font-semibold cursor-pointer bg-blue-400 text-zinc-800 text-base p-2`}>Login</div>
+      <Link href="/"><div onClick={ sendLogin } className={`rounded-md text-center font-semibold cursor-pointer bg-blue-400 text-zinc-800 text-base p-2`}>Login</div></Link>
     </form>
       </div>
     </div>
