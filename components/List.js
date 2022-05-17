@@ -12,7 +12,7 @@ function List({trans}) {
                listingsObj.listings ?
                     listingsObj.listings.map((listing) => {
                         return (
-                            <Listing key={listing.id} title={listing.title} quantity={listing.quantity} price={listing.price} href="/" tier={listing.tier} trans={trans} borderColor={Colors[listing.tier]}/>
+                            <Listing key={listing.id} itemID={listing.item.id} title={listing.title} quantity={listing.quantity} price={listing.price} href="/" tier={listing.tier} trans={trans} borderColor={Colors[listing.tier]}/>
                         )
                     })
 

@@ -1,14 +1,22 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {Colors} from '../components/Color'
-import { tierColor, transColor, tierName } from './Color'
+import { useItemData } from '../lib/hooks'
+import { transColor} from './Color'
 import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
-function Listing({title, Icon, href, quantity, price, tier, trans, borderColor }) {
+function Listing({Icon, itemID, href, quantity, price, trans}) {
+
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
+    
+    const itemObj = useItemData(itemID);
+
     return (
-        <div className={`rounded-md border-l-4 border-${borderColor} bg-zinc-800 w-full px-4 shadow-lg mb-4`}>
+        <div className={`rounded-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
             <div>
             <div className="h-full w-full flex items-center justify-between border-b border-zinc-400 py-2">
                 <div className="mr-4 text-center">
@@ -24,7 +32,7 @@ function Listing({title, Icon, href, quantity, price, tier, trans, borderColor }
                         <td className="w-3/6 leading-3">
                             <Link href={href}>
                                 <a>
-                                    <span className={`text-lg text-blue-400 underline`}>{title}</span>
+                                    <span className={`text-lg text-blue-400 underline`}>{itemObj.item?capitalize(itemObj.item.nickname):null} {itemObj.itemType?capitalize(itemObj.itemType.name):null}</span>
                                 </a>
                             </Link>
                         </td>
@@ -35,7 +43,7 @@ function Listing({title, Icon, href, quantity, price, tier, trans, borderColor }
                     <tr>
                         <td  className="w-3/6 leading-3">
                             <span className="text-zinc-400 text-sm mr-2 leading-3">
-                                Qty: {quantity} | Tier: {tier}
+                                Qty: {quantity} | Tier: {itemObj.itemTier?itemObj.itemTier.value:null}
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
@@ -66,8 +74,8 @@ function Listing({title, Icon, href, quantity, price, tier, trans, borderColor }
                     <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm bg-${transColor(trans)}`}>
                         {trans}
                     </span>
-                    <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm bg-${tierColor(tier)}`}>
-                        {tierName(tier)}
+                    <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm `} style={{backgroundColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
+                        {itemObj.itemTier?itemObj.itemTier.name:null}
                     </span>
             </div>
             </div>
