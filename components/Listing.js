@@ -52,7 +52,7 @@ function Listing({Icon, itemID, href, quantity, price, trans}) {
                     </tr>
                     <tr>
                         <td className="w-3/6 leading-3">
-                            <span className={`text-${transColor(trans)} text-sm`}>
+                            <span className={`text-sm`} style={{color:transColor(trans)}}>
                                 {price} Souls each
                             </span>
                         </td>
@@ -71,7 +71,7 @@ function Listing({Icon, itemID, href, quantity, price, trans}) {
                 </table>
             </div>
             <div className="py-2">
-                    <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm bg-${transColor(trans)}`}>
+                    <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm`} style={{backgroundColor:transColor(trans)}}>
                         {trans}
                     </span>
                     <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm `} style={{backgroundColor:itemObj.itemTier?itemObj.itemTier.color:null}}>

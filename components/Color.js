@@ -16,9 +16,9 @@ export function tierColor(tier) {
 export function transColor(trans) {
     switch(trans) {
         case 'wtb':
-            return 'green-400';
+            return '#4ade85';
         case 'wts':
-            return 'purple-400';
+            return '#c385f9';
     }
 }
 

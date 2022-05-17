@@ -28,7 +28,7 @@ function RecentsArea() {
                             <List trans='wtb' />
                         </div>
                     </div>
-                        {user
+                        {/*user
                            ? <div className="flex justify-between">
                                 <div className="w-3/6 px-2">
                                     <ListForm trans='wts' bgColor={Colors.wts} />
@@ -38,7 +38,9 @@ function RecentsArea() {
                                 </div>
                                 </div>
                            : <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
-                        }
+                        */}
+
+                        <span className="px-2 text-zinc-400 text-base">End of list.</span>
                 </div>
             </div>
         </div>
