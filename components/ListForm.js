@@ -1,8 +1,12 @@
 import { useState } from 'react'
-import { db } from '../lib/firebase'
+import { db, addItemToInv } from '../lib/firebase'
 import { collection, addDoc, Timestamp } from "firebase/firestore"
+import { useContext } from "react"
+import { UserContext } from "../lib/context"
 
 function ListForm({ trans, bgColor }) {
+
+    const {user, username, souls} = useContext(UserContext)
     
     const [formData, setFormData]=useState({
         title: "",
@@ -12,13 +16,15 @@ function ListForm({ trans, bgColor }) {
       })
 
       function submitForm() {
-        docRef()
+        addItemToInv(user.uid, 'QMrqRD2Ie6CDUQrng58Y')
+        /*docRef()
         setFormData({
           title: "",
           quantity: "",
           price: "",
           tier: "",
-      })}
+      })*/
+      }
       
       const docRef = async () => { await addDoc(collection(db, trans), {
         title: formData.title,

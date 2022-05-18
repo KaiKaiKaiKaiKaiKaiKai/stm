@@ -1,16 +1,25 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useItemData } from '../lib/hooks'
+import { addItemToInv } from '../lib/firebase'
 import { transColor} from './Color'
+import { useContext } from "react"
+import { UserContext } from "../lib/context"
 import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
 function Listing({Icon, itemID, href, price, trans, lister}) {
 
+    const {user, username, souls} = useContext(UserContext)
+
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
+    }
+
+    function submitForm() {
+        addItemToInv(user.uid, itemID)
     }
     
     const itemObj = useItemData(itemID);
@@ -57,14 +66,10 @@ function Listing({Icon, itemID, href, price, trans, lister}) {
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
-                            <Link href="/support">
-                                <a>
-                                    <div className={`float-right text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center`}>
-                                        <ShoppingCartIcon className="h-4 mr-1" />
-                                        <span> {trans == "wts" ? 'Buy' : 'Sell'}</span>
-                                    </div>
-                                </a>
-                            </Link>
+                            <div onClick={ submitForm } className={`float-right text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center`}>
+                                <ShoppingCartIcon className="h-4 mr-1" />
+                                <span> {trans == "wts" ? 'Buy' : 'Sell'}</span>
+                            </div>
                         </td>
                     </tr>
                     </tbody>

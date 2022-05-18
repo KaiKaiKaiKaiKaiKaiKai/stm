@@ -1,10 +1,14 @@
 import Listing from './Listing'
 import { useList } from '../lib/hooks'
 import { Colors } from '../components/Color'
+import { useContext } from "react"
+import { UserContext } from "../lib/context"
 
 function List({trans}) {
 
-   const listingsObj = useList({trans})
+    const {user, username, souls} = useContext(UserContext)
+
+    const listingsObj = useList({trans})
   
     return (
         <div>
