@@ -4,8 +4,9 @@ import { logout } from "../lib/hooks"
 
 function Profile() {
   const {user, username, souls, inventory} = useContext(UserContext)
+  console.log(inventory);
   return (
-    <div><a>{inventory}</a></div>
+    <div>{String(inventory)}</div>
   )
 }
 

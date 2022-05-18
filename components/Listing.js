@@ -6,7 +6,7 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
-function Listing({Icon, itemID, href, quantity, price, trans}) {
+function Listing({Icon, itemID, href, price, trans, lister}) {
 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
@@ -43,7 +43,7 @@ function Listing({Icon, itemID, href, quantity, price, trans}) {
                     <tr>
                         <td  className="w-3/6 leading-3">
                             <span className="text-zinc-400 text-sm mr-2 leading-3">
-                                Qty: {quantity} | Tier: {itemObj.itemTier?itemObj.itemTier.value:null}
+                                Listed by {lister}
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
