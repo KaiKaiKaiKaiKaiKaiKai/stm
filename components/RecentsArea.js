@@ -18,14 +18,17 @@ function RecentsArea() {
             </div>
             <div className="bg-zinc-900 w-full">
                 <div className="px-6 py-4 w-full max-w-6xl m-auto">
-                    <div className="grid grid-flow-row md:grid-flow-col">
+                    <div className="grid grid-cols-1 grid-flow-row md:grid-flow-col md:grid-cols-2">
                         <div className="w-full px-2">
                             <h3 className="text-purple-400 text-lg mb-2 font-base">Market</h3>
                             <List trans='wts' />
                         </div>
                         <div className="w-full px-2">
                             <h3 className="text-green-400 text-lg mb-2 font-base">Inventory</h3>
-                            <List trans='wtb' />
+                            {user
+                                ? <List trans='wtb' />
+                                : <span className="px-2 text-zinc-400 text-base">Sign in to view inventory.</span>
+                            }
                         </div>
                     </div>
                         {/*user
