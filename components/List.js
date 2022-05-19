@@ -1,12 +1,11 @@
 import Listing from './Listing'
 import { useList } from '../lib/hooks'
-import { Colors } from '../components/Color'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
 
 function List({trans}) {
 
-    const {user, username, souls} = useContext(UserContext)
+    const {user} = useContext(UserContext)
 
     const listingsObj = useList({trans})
   
@@ -16,7 +15,7 @@ function List({trans}) {
                listingsObj.listings ?
                     listingsObj.listings.map((listing) => {
                         return (
-                            <Listing key={listing.id} listingId={listing.id} itemID={listing.item.id} lister={listing.lister} price={listing.price} href="/" trans={trans}/>
+                            <Listing key={listing.id} listingId={listing.id} itemID={listing.item.id} listerID={trans == 'mkt'? listing.lister.id : user.uid} price={listing.price} href="/" trans={trans}/>
                         )
                     })
 

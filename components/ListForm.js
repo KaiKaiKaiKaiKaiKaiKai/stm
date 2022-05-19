@@ -6,7 +6,7 @@ import { UserContext } from "../lib/context"
 
 function ListForm({ trans, bgColor }) {
 
-    const {user, username, souls} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     
     const [formData, setFormData]=useState({
         title: "",

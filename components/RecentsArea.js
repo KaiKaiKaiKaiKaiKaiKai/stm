@@ -1,8 +1,6 @@
 import List from '../components/List'
-import ListForm from '../components/ListForm'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
-import { Colors } from "../components/Color"
 
 
 function RecentsArea() {
@@ -21,23 +19,23 @@ function RecentsArea() {
                     <div className="grid grid-cols-1 grid-flow-row md:grid-flow-col md:grid-cols-2">
                         <div className="w-full px-2">
                             <h3 className="text-purple-400 text-lg mb-2 font-base">Market</h3>
-                            <List trans='wts' />
+                            <List trans='mkt' />
                         </div>
                         <div className="w-full px-2">
                             <h3 className="text-green-400 text-lg mb-2 font-base">Inventory</h3>
                             {user
-                                ? <List trans='wtb' />
-                                : <span className="px-2 text-zinc-400 text-base">Sign in to view inventory.</span>
+                                ? <List trans='inv' />
+                                : <span className="text-zinc-400 text-base">Sign in to view inventory.</span>
                             }
                         </div>
                     </div>
                         {/*user
                            ? <div className="flex justify-between">
                                 <div className="w-3/6 px-2">
-                                    <ListForm trans='wts' bgColor={Colors.wts} />
+                                    <ListForm trans='mkt' bgColor={Colors.mkt} />
                                 </div>
                                 <div className="w-3/6 px-2">
-                                    <ListForm trans='wtb' bgColor={Colors.wtb} />
+                                    <ListForm trans='inv' bgColor={Colors.inv} />
                                 </div>
                                 </div>
                            : <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>

@@ -15,9 +15,9 @@ export function tierColor(tier) {
 
 export function transColor(trans) {
     switch(trans) {
-        case 'wtb':
+        case 'inv':
             return '#4ade85';
-        case 'wts':
+        case 'mkt':
             return '#c385f9';
     }
 }
@@ -38,8 +38,8 @@ export function tierName(tier) {
 }
 
 export const Colors = {
-    wtb: 'green-400',
-    wts: 'purple-400',
+    inv: 'green-400',
+    mkt: 'purple-400',
     1: 'zinc-400',
     2: 'yellow-400',
     3: 'blue-400',

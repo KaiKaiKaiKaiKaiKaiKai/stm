@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { useItemData } from '../lib/hooks'
-import { addItemToInv, addItemToMarket, buyItem, sellItem } from '../lib/firebase'
+import { useItemData, useListerData } from '../lib/hooks'
+import { buyItem, sellItem } from '../lib/firebase'
 import { transColor} from './Color'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
@@ -9,7 +9,7 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
-function Listing({Icon, itemID, href, price, trans, lister, listingId}) {
+function Listing({Icon, itemID, href, price, trans, listerID, listingId}) {
 
     const {user, username, souls} = useContext(UserContext)
 
@@ -23,9 +23,9 @@ function Listing({Icon, itemID, href, price, trans, lister, listingId}) {
       }
 
     function submitForm() {
-        if(trans == 'wts') {
+        if(trans == 'mkt') {
             if(souls >= price) {
-                buyItem(user.uid, listingId, itemID, price)
+                buyItem(user.uid, listingId, itemID, price, listerID)
             } else {
                 window.alert("You don't have enough Souls to buy this item!");
             }
@@ -42,6 +42,7 @@ function Listing({Icon, itemID, href, price, trans, lister, listingId}) {
     }
     
     const itemObj = useItemData(itemID);
+    const listerObj = useListerData(listerID);
 
     return (
         <div className={`rounded-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
@@ -71,7 +72,7 @@ function Listing({Icon, itemID, href, price, trans, lister, listingId}) {
                     <tr>
                         <td  className="w-3/6 leading-3">
                             <span className="text-zinc-400 text-sm mr-2 leading-3">
-                            {trans == 'wts'? 'Listed by ' + lister : 'Owned'}
+                            {trans == 'mkt'? 'Listed by ' + listerObj.lister?.name : 'Owned'}
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
@@ -81,13 +82,13 @@ function Listing({Icon, itemID, href, price, trans, lister, listingId}) {
                     <tr>
                         <td className="w-3/6 leading-3">
                             <span className={`text-sm`} style={{color:transColor(trans)}}>
-                                {trans == 'wts'? price + ' Souls' : 'TBD Souls'}
+                                {trans == 'mkt'? price + ' Souls' : null}
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
                             {user?<div onClick={ submitForm } className={`cursor-pointer float-right text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center`}>
                                 <ShoppingCartIcon className="h-4 mr-1" />
-                                <span> {trans == "wts" ? 'Buy' : 'Sell'}</span>
+                                <span> {trans == "mkt" ? 'Buy' : 'Sell'}</span>
                             </div>
                             :null}
                         </td>
