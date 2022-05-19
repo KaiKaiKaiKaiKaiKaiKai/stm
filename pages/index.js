@@ -6,7 +6,7 @@ export default function Home() {
     <div>
 
       {/* Nav */}
-      <SearchArea subH="10.5"/>
+      {/*<SearchArea subH="10.5"/>*/}
 
       {/* Results */}
       <RecentsArea />
