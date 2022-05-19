@@ -8,6 +8,7 @@ import { UserContext } from "../lib/context"
 import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
+import { list } from 'postcss'
 
 function Listing({Icon, itemID, href, price, trans, listerID, listingId}) {
 
@@ -24,7 +25,7 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId}) {
 
     function submitForm() {
         if(trans == 'mkt') {
-            if(souls >= price) {
+            if((souls >= price) || (listerID == user.uid)) {
                 buyItem(user.uid, listingId, itemID, price, listerID)
             } else {
                 window.alert("You don't have enough Souls to buy this item!");
