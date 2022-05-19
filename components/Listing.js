@@ -45,7 +45,7 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId}) {
     const listerObj = useListerData(listerID);
 
     return (
-        <div className={`rounded-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
+        <div className={`rounded-tr-md rounded-bl-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
             <div>
             <div className="h-full w-full flex items-center justify-between border-b border-zinc-400 py-2">
                 <div className="mr-4 text-center">
