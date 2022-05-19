@@ -10,14 +10,22 @@ import {
 } from "@heroicons/react/solid"
 import { list } from 'postcss'
 
-function Listing({Icon, itemID, href, price, trans, listerID, listingId}) {
+function Listing({Icon, itemID, href, price, trans, listerID, listingId, timestamp}) {
 
     const {user, username, souls} = useContext(UserContext)
+
+    console.log(timestamp)
+    const date = new Date(timestamp.seconds * 1000)
+    console.log(date)
 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
+
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+      }
 
     function isInt(value) {
         return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
@@ -67,7 +75,10 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId}) {
                             </Link>
                         </td>
                         <td className="w-3/6 leading-3">
-                            
+                            {user?<div className={`float-right text-sm text-zinc-400 text-right`}>
+                                <span> {trans == 'mkt'? padTo2Digits(date.getDate()).toString() + "/" + padTo2Digits((date.getMonth() + 1)).toString() + "/" + date.getFullYear().toString() : null}</span>
+                            </div>
+                            :null}
                         </td>
                     </tr>
                     <tr>
