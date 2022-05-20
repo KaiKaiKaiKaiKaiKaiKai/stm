@@ -15,7 +15,7 @@ function List({trans}) {
                listingsObj.listings ?
                     listingsObj.listings.map((listing) => {
                         return (
-                            <Listing key={listing.id} listingId={listing.id} itemID={listing.item.id} listerID={trans == 'mkt'? listing.lister.id : user.uid} price={listing.price} timestamp={listing.timestamp} href="/" trans={trans}/>
+                            <Listing key={listing.id} listingId={listing.id} itemId={listing.item.id} listerId={trans == 'mkt'? listing.lister.id : user.uid} price={listing.price} timestamp={listing.timestamp} href="/" trans={trans}/>
                         )
                     })
 

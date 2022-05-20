@@ -41,7 +41,7 @@ function RecentsArea() {
                            : <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
                         */}
 
-                        <span className="px-2 text-zinc-400 text-base">Version alpha 1.6</span>
+                        <span className="px-2 text-zinc-400 text-base">Version alpha 2.0</span>
                 </div>
             </div>
         </div>

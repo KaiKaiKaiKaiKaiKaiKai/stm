@@ -10,7 +10,7 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
-function Listing({Icon, itemID, href, price, trans, listerID, listingId, timestamp}) {
+function Listing({Icon, itemId, href, price, trans, listerId, listingId, timestamp}) {
 
     const {user, username, souls} = useContext(UserContext)
 
@@ -33,9 +33,9 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
 
     function submitTrans() {
         if(trans == 'mkt') {
-            if((souls >= price) || (listerID == user.uid)) {
+            if((souls >= price) || (listerId == user.uid)) {
                 if(confirm("Are you sure you want to buy " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.item?.nickname) + " " + capitalize(itemObj.itemType?.name) + " for " + price + " Souls?")) {
-                    buyItem(user.uid, listingId, itemID, price, listerID)
+                    buyItem(user.uid, listingId, itemId, price, listerId)
                 }
             } else {
                 window.alert("You don't have enough Souls to buy this item!");
@@ -44,7 +44,7 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
             price = prompt("Please enter a price");
             if(price != null) {
                 if(isInt(price)) {
-                    sellItem(user.uid, listingId, itemID, price, username)
+                    sellItem(user.uid, listingId, itemId, price, username)
                 } else {
                     window.alert("Data type invalid!");
                 }
@@ -56,17 +56,17 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
         let nickname = prompt("Please enter a nickname", itemObj.item?.nickname);
         if(nickname != null)
         {
-            updateItemNickname(itemID, nickname)
+            updateItemNickname(itemId, nickname)
         }
     }
     
-    const itemObj = useItemData(itemID);
-    const listerObj = useListerData(listerID);
+    const itemObj = useItemData(itemId);
+    const listerObj = useListerData(listerId);
 
     return (
         <div className={`rounded-tr-md rounded-bl-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
             <div>
-            <div className="h-full w-full flex items-center justify-between border-b border-zinc-400 py-2">
+            <div className="h-full w-full flex items-center justify-between py-2">
                 <div className="mr-4 text-center">
                     <Link href={href}>
                         <a>
@@ -86,7 +86,9 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
                         </td>
                         <td className="w-3/6 leading-3">
                             <div className={`float-right text-sm text-zinc-400 text-right`}>
-                                <span> {trans == 'mkt'? padTo2Digits(date.getDate()).toString() + "/" + padTo2Digits((date.getMonth() + 1)).toString() + "/" + date.getFullYear().toString() : null}</span>
+                                <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 rounded-sm `} style={{backgroundColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
+                                    {itemObj.itemTier?itemObj.itemTier.name:null}
+                                </span>
                             </div>
                         </td>
                     </tr>
@@ -103,33 +105,26 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
                     <tr>
                         <td className="w-3/6 leading-3">
                             <span className={`text-sm`} style={{color:transColor(trans)}}>
-                                {trans == 'mkt'? price + ' Souls' : null}
+                                {trans == 'mkt'? price + ' Souls' : padTo2Digits(date.getDate()).toString() + "/" + padTo2Digits((date.getMonth() + 1)).toString() + "/" + date.getFullYear().toString()}
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
-                            {user?<div onClick={ submitTrans } className={`cursor-pointer float-right text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center`}>
-                                <ShoppingCartIcon className="h-4 mr-1" />
-                                <span> {trans == "mkt" ? 'Buy' : 'Sell'}</span>
-                            </div>
-                            :null}
-                            {trans =="inv" ?<div onClick={ submitEdit } className="cursor-pointer float-right mr-2  text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
-                                <PencilIcon className="h-4 mr-1" />
-                                <span>Name</span>
-                            </div>
-                            :null}
+                            
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div className="py-2">
-                    <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm`} style={{backgroundColor:transColor(trans)}}>
-                        {trans}
-                    </span>
-                    <span className={`text-sm font-semibold py-0 px-1 text-center text-zinc-800 mr-1 rounded-sm `} style={{backgroundColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
-                        {itemObj.itemTier?itemObj.itemTier.name:null}
-                    </span>
-            </div>
+            {user?<div className="py-2 border-t border-zinc-400">
+                <div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
+                    <ShoppingCartIcon className="h-4 mr-1" />
+                    <span>{trans == "mkt" ? 'Buy' : 'Sell'}</span>
+                </div>
+                {listerId == user.uid ?<div onClick={ submitEdit } className="cursor-pointer text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
+                        <PencilIcon className="h-4 mr-1" />
+                                <span>Name</span>
+                </div>:null}
+            </div>:null}
             </div>
         </div>
     )
