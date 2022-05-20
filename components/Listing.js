@@ -34,7 +34,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
     function submitTrans() {
         if(trans == 'mkt') {
             if((souls >= price) || (listerId == user.uid)) {
-                if(confirm("Are you sure you want to buy " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.item?.nickname) + " " + capitalize(itemObj.itemType?.name) + " for " + price + " Souls?")) {
+                if(confirm("Are you sure you want to buy " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.itemType?.name) + " for " + price + " Souls?")) {
                     buyItem(user.uid, listingId, itemId, price, listerId)
                 }
             } else {
@@ -82,7 +82,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                         <td className="w-3/6 leading-3">
                             <Link href={href}>
                                 <a>
-                                    <span className={`text-lg text-blue-400 underline`}>{itemObj.item?capitalize(itemObj.item.nickname):null} <font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font></span>
+                                    <span className={`text-lg text-blue-400 `}><font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> "{itemObj.item?capitalize(itemObj.item.nickname):null}"</span>
                                 </a>
                             </Link>
                         </td>
