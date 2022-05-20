@@ -76,7 +76,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                     <tbody>
                     <tr>
                         <td className="w-3/6 leading-3">
-                            <span className={`text-lg text-blue-400`}><font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> "{itemObj.item?capitalize(itemObj.item.nickname):null}"</span>
+                            <span className="text-lg text-blue-400"><font className="font-bold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> "{itemObj.item?capitalize(itemObj.item.nickname):null}"</span>
                         </td>
                         <td className="w-3/6 leading-3">
                             <div className={`float-right text-sm text-zinc-400 text-right`}>
@@ -99,7 +99,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                     <tr>
                         <td className="w-3/6 leading-3">
                             <span className={`text-sm`} style={{color:transColor(trans)}}>
-                                {trans == 'mkt'? price + ' Souls' : padTo2Digits(date.getDate()).toString() + "/" + padTo2Digits((date.getMonth() + 1)).toString() + "/" + date.getFullYear().toString()}
+                                {trans == 'mkt'? price + ' Souls' : 'Added ' + padTo2Digits(date.getDate()).toString() + "/" + padTo2Digits((date.getMonth() + 1)).toString() + "/" + date.getFullYear().toString()}
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">

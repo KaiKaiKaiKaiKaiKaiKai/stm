@@ -25,7 +25,7 @@ function RecentsArea() {
                             <h3 className="text-green-400 text-lg mb-2 font-base">Inventory</h3>
                             {user
                                 ? <List trans='inv' />
-                                : <span className="text-zinc-400 text-base">Sign in to view inventory.</span>
+                                : <span className="text-zinc-400 text-base">Sign in to manage your inventory.</span>
                             }
                         </div>
                     </div>
