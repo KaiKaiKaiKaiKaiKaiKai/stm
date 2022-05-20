@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useItemData, useListerData } from '../lib/hooks'
-import { buyItem, sellItem, updateItemNickname } from '../lib/firebase'
+import { buyItem, sellItem, updateItemNickname, updatePrice } from '../lib/firebase'
 import { transColor} from './Color'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
@@ -33,7 +33,10 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
 
     function submitTrans() {
         if(trans == 'mkt') {
-            if((souls >= price) || (listerId == user.uid)) {
+            if(listerId == user.uid)
+            {
+                buyItem(user.uid, listingId, itemId, price, listerId)
+            } else if(souls >= price) {
                 if(confirm("Are you sure you want to buy " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.itemType?.name) + " for " + price + " Souls?")) {
                     buyItem(user.uid, listingId, itemId, price, listerId)
                 }
@@ -54,11 +57,24 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
 
     function submitEdit() {
         let nickname = prompt("Please enter a nickname", itemObj.item?.nickname);
-        if(4 <= nickname.length && nickname.length <= 16)
+        if(nickname != null)
         {
-            updateItemNickname(itemId, nickname)
-        } else {
-            window.alert("Nickname must be between 4 and 16 characters!");
+            if (1 <= nickname.length && nickname.length <= 16) {
+                updateItemNickname(itemId, nickname)
+            } else {
+                window.alert("Nickname must be between 1 and 16 characters!");
+            }
+        }
+    }
+
+    function submitPrice() {
+        let newPrice = prompt("Please enter a price", price);
+        if(newPrice != null) {
+            if(isInt(newPrice)) {
+                updatePrice(listingId, newPrice)
+            } else {
+                    window.alert("Data type invalid!");
+            }
         }
     }
     
@@ -110,10 +126,21 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                 </table>
             </div>
             {user?<div className="py-2 border-t border-zinc-400">
-                <div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
-                    <ShoppingCartIcon className="h-4 mr-1" />
-                    <span>{trans == "mkt" ? 'Buy' : 'Sell'}</span>
+                {trans == "mkt" ?<div className="inline-flex">
+                    <div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
+                        <ShoppingCartIcon className="h-4 mr-1" />
+                        <span>{listerId == user.uid ? 'Reclaim' : 'Buy'}</span>
+                    </div>
+                    {listerId == user.uid ?<div onClick={ submitPrice } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
+                        <ShoppingCartIcon className="h-4 mr-1" />
+                        <span>Price</span>
+                    </div>:null}
                 </div>
+                :null}
+                {trans == "inv" ?<div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
+                    <ShoppingCartIcon className="h-4 mr-1" />
+                    <span>Sell</span>
+                </div>:null}
                 {listerId == user.uid ?<div onClick={ submitEdit } className="cursor-pointer text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
                         <PencilIcon className="h-4 mr-1" />
                                 <span>Name</span>
