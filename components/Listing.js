@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useItemData, useListerData } from '../lib/hooks'
-import { buyItem, sellItem } from '../lib/firebase'
+import { buyItem, sellItem, updateItemNickname } from '../lib/firebase'
 import { transColor} from './Color'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
 import {
+    PencilIcon,
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
-import { list } from 'postcss'
 
 function Listing({Icon, itemID, href, price, trans, listerID, listingId, timestamp}) {
 
@@ -31,7 +31,7 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
         return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
       }
 
-    function submitForm() {
+    function submitTrans() {
         if(trans == 'mkt') {
             if((souls >= price) || (listerID == user.uid)) {
                 if(confirm("Are you sure you want to buy " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.item?.nickname) + " " + capitalize(itemObj.itemType?.name) + " for " + price + " Souls?")) {
@@ -49,6 +49,14 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
                     window.alert("Data type invalid!");
                 }
             }
+        }
+    }
+
+    function submitEdit() {
+        let nickname = prompt("Please enter a nickname", itemObj.item?.nickname);
+        if(nickname != null)
+        {
+            updateItemNickname(itemID, nickname)
         }
     }
     
@@ -77,10 +85,9 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
                             </Link>
                         </td>
                         <td className="w-3/6 leading-3">
-                            {user?<div className={`float-right text-sm text-zinc-400 text-right`}>
+                            <div className={`float-right text-sm text-zinc-400 text-right`}>
                                 <span> {trans == 'mkt'? padTo2Digits(date.getDate()).toString() + "/" + padTo2Digits((date.getMonth() + 1)).toString() + "/" + date.getFullYear().toString() : null}</span>
                             </div>
-                            :null}
                         </td>
                     </tr>
                     <tr>
@@ -100,9 +107,14 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
                             </span>
                         </td>
                         <td className="w-3/6 leading-3">
-                            {user?<div onClick={ submitForm } className={`cursor-pointer float-right text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center`}>
+                            {user?<div onClick={ submitTrans } className={`cursor-pointer float-right text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center`}>
                                 <ShoppingCartIcon className="h-4 mr-1" />
                                 <span> {trans == "mkt" ? 'Buy' : 'Sell'}</span>
+                            </div>
+                            :null}
+                            {trans =="inv" ?<div onClick={ submitEdit } className="cursor-pointer float-right mr-2  text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
+                                <PencilIcon className="h-4 mr-1" />
+                                <span>Name</span>
                             </div>
                             :null}
                         </td>
