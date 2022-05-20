@@ -34,7 +34,9 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
     function submitForm() {
         if(trans == 'mkt') {
             if((souls >= price) || (listerID == user.uid)) {
-                buyItem(user.uid, listingId, itemID, price, listerID)
+                if(confirm("Are you sure you want to buy " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.item?.nickname) + " " + capitalize(itemObj.itemType?.name) + " for " + price + " Souls?")) {
+                    buyItem(user.uid, listingId, itemID, price, listerID)
+                }
             } else {
                 window.alert("You don't have enough Souls to buy this item!");
             }
@@ -60,7 +62,7 @@ function Listing({Icon, itemID, href, price, trans, listerID, listingId, timesta
                 <div className="mr-4 text-center">
                     <Link href={href}>
                         <a>
-                            <Image src="/images/items/spear.png" height="40" width="40" alt="icon" className="rounded-full" />
+                            <img src={`images/items/${itemObj.itemType?.name}.png`} height="40" width="40" alt="icon" className="rounded-full" />
                         </a>
                     </Link>
                 </div>
