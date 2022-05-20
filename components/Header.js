@@ -30,7 +30,7 @@ function Header() {
                         <span>{username}</span>
                         <span className="ml-2 text-purple-400">{souls} Souls</span>
                         </div>
-                        <separator className="border-l border-zinc-400 ml-6"></separator>
+                        <separator className="border-l border-zinc-400 ml-3"></separator>
                         <button onClick={logout}><HeaderItem title='Sign out' Icon={LogoutIcon} special='false' href=""/></button>
                     </a>
                 : <HeaderItem title='Sign in' Icon={LoginIcon} special='false' href='/signin'/>
