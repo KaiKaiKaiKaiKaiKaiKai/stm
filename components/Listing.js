@@ -66,25 +66,17 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
     const listerObj = useListerData(listerId);
 
     return (
-        <div className={`rounded-tr-md rounded-bl-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
+        <div className={`rounded-tr-md rounded-bl-md border-l-4 bg-zinc-800 w-full px-4 shadow-lg mb-4 cursor-default`} style={{borderColor:itemObj.itemTier?itemObj.itemTier.color:null}}>
             <div>
             <div className="h-full w-full flex items-center justify-between py-2">
                 <div className="mr-4 text-center">
-                    <Link href={href}>
-                        <a>
-                            <img src={`images/items/${itemObj.itemType?.name}.png`} height="40" width="40" alt="icon" className="rounded-full" />
-                        </a>
-                    </Link>
+                    <img src={`images/items/${itemObj.itemType?.name}.png`} height="40" width="40" alt="icon" className="rounded-full" />
                 </div>
                 <table className="grow">
                     <tbody>
                     <tr>
                         <td className="w-3/6 leading-3">
-                            <Link href={href}>
-                                <a>
-                                    <span className={`text-lg text-blue-400 `}><font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> "{itemObj.item?capitalize(itemObj.item.nickname):null}"</span>
-                                </a>
-                            </Link>
+                            <span className={`text-lg text-blue-400`}><font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> "{itemObj.item?capitalize(itemObj.item.nickname):null}"</span>
                         </td>
                         <td className="w-3/6 leading-3">
                             <div className={`float-right text-sm text-zinc-400 text-right`}>
