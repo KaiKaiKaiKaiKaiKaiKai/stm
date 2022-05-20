@@ -54,9 +54,11 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
 
     function submitEdit() {
         let nickname = prompt("Please enter a nickname", itemObj.item?.nickname);
-        if(nickname != null)
+        if(4 <= nickname.length && nickname.length <= 16)
         {
             updateItemNickname(itemId, nickname)
+        } else {
+            window.alert("Nickname must be between 4 and 16 characters!");
         }
     }
     
@@ -80,7 +82,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                         <td className="w-3/6 leading-3">
                             <Link href={href}>
                                 <a>
-                                    <span className={`text-lg text-blue-400 underline`}>{itemObj.item?capitalize(itemObj.item.nickname):null} {itemObj.itemType?capitalize(itemObj.itemType.name):null}</span>
+                                    <span className={`text-lg text-blue-400 underline`}>{itemObj.item?capitalize(itemObj.item.nickname):null} <font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font></span>
                                 </a>
                             </Link>
                         </td>
