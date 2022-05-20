@@ -132,7 +132,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                         <span>{listerId == user.uid ? 'Reclaim' : 'Buy'}</span>
                     </div>
                     {listerId == user.uid ?<div onClick={ submitPrice } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-blue-400 rounded-sm px-1.5 py-0.5 text-center inline-flex items-center">
-                        <ShoppingCartIcon className="h-4 mr-1" />
+                        <PencilIcon className="h-4 mr-1" />
                         <span>Price</span>
                     </div>:null}
                 </div>
