@@ -76,7 +76,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
                     <tbody>
                     <tr>
                         <td className="w-3/6 leading-3">
-                            <span className="text-lg text-blue-400"><font className="font-bold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> "{itemObj.item?capitalize(itemObj.item.nickname):null}"</span>
+                            <span className="text-lg text-blue-400"><font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> &quot;{itemObj.item?capitalize(itemObj.item.nickname):null}&quot;</span>
                         </td>
                         <td className="w-3/6 leading-3">
                             <div className={`float-right text-sm text-zinc-400 text-right`}>
