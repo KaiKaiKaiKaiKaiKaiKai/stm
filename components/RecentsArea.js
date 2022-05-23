@@ -24,7 +24,7 @@ function RecentsArea() {
                             }
                         </div>
                     </div>
-                        <span className="px-2 text-zinc-400 text-base">Version alpha 3.0</span>
+                        <span className="px-2 text-zinc-400 text-base">Version alpha 3.1</span>
                 </div>
             </div>
         </div>

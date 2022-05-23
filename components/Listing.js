@@ -1,11 +1,12 @@
 import { useItemData, useListerData } from '../lib/hooks'
-import { buyItem, sellItem, updateItemNickname, updatePrice, getItemData } from '../lib/firebase'
+import { buyItem, sellItem, updateItemNickname, updatePrice, deleteItem } from '../lib/firebase'
 import { transColor} from './Color'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
 import {
     PencilIcon,
     ShoppingCartIcon,
+    TrashIcon
 } from "@heroicons/react/solid"
 
 function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
@@ -51,6 +52,12 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
         }
     }
 
+    function submitDelete() {
+        if(confirm("Are you sure you want to trash " + capitalize(itemObj.itemTier?.name) + " " + capitalize(itemObj.itemType?.name) + "?")) {
+            deleteItem(user.uid, listingId, itemId)
+        }
+    }
+
     function submitEdit() {
         let nickname = prompt("Please enter a nickname", itemObj.item?.nickname);
         if(nickname != null)
@@ -90,7 +97,7 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
                     <tbody>
                     <tr>
                         <td className="w-3/6 leading-3">
-                            <span className="text-lg text-blue-400" style={{color:itemObj.itemTier?itemObj.itemTier.color:null}}><font className="font-semibold">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font> &quot;{itemObj.item?capitalize(itemObj.item.nickname):null}&quot;</span>
+                            <span className="text-lg text-blue-400" style={{color:itemObj.itemTier?itemObj.itemTier.color:null}}><font className="font-semibold mr-2">{itemObj.itemType?capitalize(itemObj.itemType.name):null}</font><font className="font-light text-base">&quot;{itemObj.item?capitalize(itemObj.item.nickname):null}&quot;</font></span>
                         </td>
                         <td className="w-3/6 leading-3">
                             <div className={`float-right text-sm text-zinc-400 text-right`}>
@@ -123,7 +130,7 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
                     </tbody>
                 </table>
             </div>
-            {user?<div className="py-2 border-t border-zinc-400">
+            {user?<div className="py-1 border-t border-zinc-400">
                 {trans == "mkt" ?<div className="inline-flex">
                     <div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                         <ShoppingCartIcon className="h-3 mr-1" />
@@ -135,10 +142,14 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
                     </div>:null}
                 </div>
                 :null}
-                {trans == "inv" ?<div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
+                {trans == "inv" ?<div className="inline-flex"><div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                     <ShoppingCartIcon className="h-3 mr-1" />
                     <span>Sell</span>
-                </div>:null}
+                </div>
+                <div onClick={ submitDelete } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
+                    <TrashIcon className="h-3 mr-1" />
+                    <span>Trash</span>
+                </div></div>:null}
                 {listerId == user.uid ?<div onClick={ submitEdit } className="cursor-pointer text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                         <PencilIcon className="h-3 mr-1" />
                                 <span>Name</span>
