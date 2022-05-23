@@ -9,11 +9,6 @@ function RecentsArea() {
 
     return (
         <div className="w-full h-auto">
-            {/*<div className="bg-zinc-800 h-28 w-full">
-                <div className="px-8 h-full w-full max-w-6xl m-auto flex items-center justify-between">
-                    <h2 className="text-white text-xl">ITEM TRADING</h2>
-                </div>
-            </div>*/}
             <div className="bg-zinc-900 w-full">
                 <div className="px-6 py-4 w-full max-w-6xl m-auto">
                     <div className="grid grid-cols-1 grid-flow-row md:grid-flow-col md:grid-cols-2">
@@ -29,19 +24,7 @@ function RecentsArea() {
                             }
                         </div>
                     </div>
-                        {/*user
-                           ? <div className="flex justify-between">
-                                <div className="w-3/6 px-2">
-                                    <ListForm trans='mkt' bgColor={Colors.mkt} />
-                                </div>
-                                <div className="w-3/6 px-2">
-                                    <ListForm trans='inv' bgColor={Colors.inv} />
-                                </div>
-                                </div>
-                           : <span className="px-2 text-zinc-400 text-base">Sign in to list an item.</span>
-                        */}
-
-                        <span className="px-2 text-zinc-400 text-base">Version alpha 2.4</span>
+                        <span className="px-2 text-zinc-400 text-base">Version alpha 3.0</span>
                 </div>
             </div>
         </div>

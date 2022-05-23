@@ -1,7 +1,5 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import { useItemData, useListerData } from '../lib/hooks'
-import { buyItem, sellItem, updateItemNickname, updatePrice } from '../lib/firebase'
+import { buyItem, sellItem, updateItemNickname, updatePrice, getItemData } from '../lib/firebase'
 import { transColor} from './Color'
 import { useContext } from "react"
 import { UserContext } from "../lib/context"
@@ -10,13 +8,11 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/solid"
 
-function Listing({Icon, itemId, href, price, trans, listerId, listingId, timestamp}) {
+function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
 
     const {user, username, souls} = useContext(UserContext)
 
-    console.log(timestamp)
     const date = new Date(timestamp.seconds * 1000)
-    console.log(date)
 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
@@ -78,7 +74,9 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
         }
     }
     
-    const itemObj = useItemData(itemId);
+
+    
+    const itemObj = useItemData(itemId)
     const listerObj = useListerData(listerId);
 
     return (
@@ -86,7 +84,7 @@ function Listing({Icon, itemId, href, price, trans, listerId, listingId, timesta
             <div>
             <div className="h-full w-full flex items-center justify-between py-2">
                 <div className="mr-4 text-center">
-                    <img src={`images/items/${itemObj.itemType?.name}.png`} height="40" width="40" alt="icon" className="rounded-full" />
+                    {itemObj.itemType? <img src={`images/items/${itemObj.itemType.name}.png`} height="40" width="40" alt="icon" className="rounded-full" /> : null}
                 </div>
                 <table className="grow">
                     <tbody>

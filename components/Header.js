@@ -21,18 +21,15 @@ function Header() {
                 <Link href="/"><a><h1 className="text-white text-xl md:text-2xl font-thin">Soul<font className="text-blue-400 font-normal">Traders</font></h1></a></Link>
             </div>
             <div className="text-right">
-                {/*<HeaderItem title='Market' green='true' Icon={ShoppingCartIcon} href='/'/>
-                <HeaderItem title='Support' Icon={ChatAlt2Icon} special='false' href='/support'/>
-                <separator className="border-l border-zinc-400 h-full ml-6"></separator>*/}
                 {user
-                ?   <a>
+                ?   <div>
                         <div className={`ml-6 inline-flex text-sm items-center text-zinc-400 align-middle`}>
                         <span>{username}</span>
                         <span className="ml-2 text-purple-400">{souls}</span>
                         </div>
                         <separator className="border-l border-zinc-400 ml-3"></separator>
                         <button onClick={logout}><HeaderItem title='Sign out' Icon={LogoutIcon} special='false' href=""/></button>
-                    </a>
+                    </div>
                 : <HeaderItem title='Sign in' Icon={LoginIcon} special='false' href='/signin'/>
                 }
             </div>
