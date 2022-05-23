@@ -131,8 +131,8 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
                 </table>
             </div>
             {user?<div className="py-1 border-t border-zinc-400">
-                {trans == "mkt" ?<div className="inline-flex">
-                    <div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
+            {trans == "mkt" ?<div className="inline-flex">
+                    <div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-purple-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                         <ShoppingCartIcon className="h-3 mr-1" />
                         <span>{listerId == user.uid ? 'Reclaim' : 'Buy'}</span>
                     </div>
@@ -142,18 +142,23 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
                     </div>:null}
                 </div>
                 :null}
-                {trans == "inv" ?<div className="inline-flex"><div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
+                {trans == "inv" ?<div className="inline-flex"><div onClick={ submitTrans } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-green-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                     <ShoppingCartIcon className="h-3 mr-1" />
                     <span>Sell</span>
                 </div>
-                <div onClick={ submitDelete } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
+                <div onClick={ submitDelete } className="cursor-pointer mr-2 text-sm text-zinc-800 font-semibold bg-red-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                     <TrashIcon className="h-3 mr-1" />
                     <span>Trash</span>
                 </div></div>:null}
-                {listerId == user.uid ?<div onClick={ submitEdit } className="cursor-pointer text-sm text-zinc-800 font-semibold bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
+                {listerId == user.uid ?<div onClick={ submitEdit } className="cursor-pointer text-sm text-zinc-800 font-semibold mr-2 bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                         <PencilIcon className="h-3 mr-1" />
                                 <span>Name</span>
                 </div>:null}
+                
+                
+                
+                
+                
             </div>:null}
             </div>
         </div>
