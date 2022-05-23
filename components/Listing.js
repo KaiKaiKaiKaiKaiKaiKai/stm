@@ -152,7 +152,7 @@ function Listing({itemId, price, trans, listerId, listingId, timestamp}) {
                 </div></div>:null}
                 {trans == "inv" ?<div onClick={ submitEdit } className="cursor-pointer text-sm text-zinc-800 font-semibold mr-2 bg-zinc-400 rounded-sm px-1 py-0 text-center inline-flex items-center">
                         <PencilIcon className="h-3 mr-1" />
-                                <span>Nickame</span>
+                                <span>Nickname</span>
                 </div>:null}
                 
                 

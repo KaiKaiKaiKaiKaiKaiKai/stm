@@ -18,7 +18,7 @@ function Header() {
     <nav className="bg-zinc-800 h-14 w-full">
         <div className="px-8 h-full w-full max-w-6xl m-auto flex items-center justify-between">
             <div className="text-left">
-                <Link href="/"><a><h1 className="text-white text-xl md:text-2xl font-thin">Soul<font className="text-blue-400 font-normal">Traders</font></h1></a></Link>
+                <Link href="/"><a><h1 className="text-white text-lg md:text-xl font-thin">Soul<font className="text-blue-400 font-normal">Traders</font></h1></a></Link>
             </div>
             <div className="text-right">
                 {user
