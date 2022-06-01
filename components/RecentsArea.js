@@ -7,6 +7,7 @@ function RecentsArea() {
 
     const {user, username, souls} = useContext(UserContext)
 
+    
     return (
         <div className="w-full h-auto">
             <div className="bg-zinc-900 w-full">
@@ -24,7 +25,7 @@ function RecentsArea() {
                             }
                         </div>
                     </div>
-                        <span className="px-2 text-zinc-400 text-base">Version alpha 3.3</span>
+                        <span className="px-2 text-zinc-400 text-base">Version alpha 3.5</span>
                 </div>
             </div>
         </div>
